@@ -5,8 +5,8 @@
     
     <entry>
       <title>《论语》十二章</title>
-      <link href="/2020/05/26/%E8%AE%BA%E8%AF%AD/"/>
-      <url>/2020/05/26/%E8%AE%BA%E8%AF%AD/</url>
+      <link href="/posts/1023808978/"/>
+      <url>/posts/1023808978/</url>
       
         <content type="html"><![CDATA[<div align="center"><img src="https://cdn.jsdelivr.net/gh/gooddh/cdn@1.4/img/lunyu.jpg" width = "500" height = "200" alt="孔子"/></div>《论语》是记载孔丘及其一部分弟子言行的语录体文集，儒家的重要经典之一，选自《论语译注》（杨伯峻译注，中华书局1980年版）《论语》儒家经典著作，是记录孔子及其弟子言行的一部书。共20篇。与《大学》《中庸》《孟子》合称“四书”。<a id="more"></a><p>子曰：“学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知而不愠，不亦君子乎？”——《学而》</p><p>曾子曰：“吾日三省吾身：为人谋而不忠乎？与朋友交而不信乎？传不习乎？”——《学而》</p><p>子曰：“吾十有五而志于学，三十而立，四十而不惑，五十而知天命，六十而耳顺，七十而从心所欲，不逾矩。”——《为政》</p><p>子曰：“温故而知新，可以为师矣。”——《为政》</p><p>子曰：“学而不思则罔，思而不学则殆。”——《为政》</p><p>子曰：“贤哉，回也！一箪食，一瓢饮，在陋巷，人不堪其忧，回也不改其乐。贤哉，回也！”——《雍也》</p><p>子曰：“知之者不如好之者，好之者不如乐之者。”——《雍也》</p><p>子曰：“饭疏食饮水，曲肱而枕之，乐亦在其中矣。不义而富且贵，于我如浮云。”——《述而》</p><p>子曰：“三人行，必有我师焉。择其善者而从之，其不善者而改之。”——《述而》</p><p>子在川上曰：“逝者如斯夫，不舍昼夜。”——《子罕》</p><p>子曰：“三军可夺帅也，匹夫不可夺志也。”——《子罕》</p><p>子夏曰：“博学而笃志，切问而近思，仁在其中矣。”</p>]]></content>
       
@@ -34,8 +34,8 @@
     
     <entry>
       <title>Hello World</title>
-      <link href="/2020/05/25/hello-world/"/>
-      <url>/2020/05/25/hello-world/</url>
+      <link href="/posts/1243066710/"/>
+      <url>/posts/1243066710/</url>
       
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
       
