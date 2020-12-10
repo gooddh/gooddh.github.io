@@ -2,15 +2,15 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>艾特沃</title>
   
-  <subtitle>记录现在,分享所学所得</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://itwor.cn/"/>
-  <updated>2020-05-31T04:09:33.256Z</updated>
+  <updated>2020-12-10T12:49:05.676Z</updated>
   <id>https://itwor.cn/</id>
   
   <author>
-    <name>ITWOR</name>
+    <name>Jayson</name>
     
   </author>
   
@@ -21,18 +21,11 @@
     <link href="https://itwor.cn/posts/1023808979/"/>
     <id>https://itwor.cn/posts/1023808979/</id>
     <published>2020-05-26T09:32:01.000Z</published>
-    <updated>2020-05-31T04:09:33.256Z</updated>
+    <updated>2020-12-10T12:49:05.676Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;准确的说，RSS就像一个网站的海报，里面包括这个网站的最新内容，会自动更新。所以，我们只要订阅了RSS，就不会错过自己喜欢的网站的更新了。&lt;/p&gt;
-&lt;h3 id=&quot;RSS是什么&quot;&gt;&lt;a href=&quot;#RSS是什么&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;p&gt;准确的说，RSS就像一个网站的海报，里面包括这个网站的最新内容，会自动更新。所以，我们只要订阅了RSS，就不会错过自己喜欢的网站的更新了。&lt;/p&gt;
     
     </summary>
     
@@ -51,7 +44,7 @@
     <link href="https://itwor.cn/posts/1023808978/"/>
     <id>https://itwor.cn/posts/1023808978/</id>
     <published>2020-05-26T09:32:01.000Z</published>
-    <updated>2020-05-27T08:34:23.577Z</updated>
+    <updated>2020-12-10T05:04:18.009Z</updated>
     
     <summary type="html">
     
