@@ -3181,10 +3181,10 @@ blockquote footer cite:before {
   text-decoration: underline;
 }
 #footer-wrap .footer-separator {
-  margin: 0 0.2rem;
+  margin: 0 0.1rem;
 }
 #footer-wrap .icp-icon {
-  padding: 0 4px;
+  padding: 0 2px;
   vertical-align: text-bottom;
 }
 #page-header {

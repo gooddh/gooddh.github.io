@@ -6,45 +6,22 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://itwor.cn/"/>
-  <updated>2020-12-10T12:49:05.676Z</updated>
+  <updated>2020-12-11T16:13:22.773Z</updated>
   <id>https://itwor.cn/</id>
   
   <author>
-    <name>Jayson</name>
+    <name>ITWOR</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>RSS订阅功能是什么，如何使用？</title>
-    <link href="https://itwor.cn/posts/1023808979/"/>
-    <id>https://itwor.cn/posts/1023808979/</id>
-    <published>2020-05-26T09:32:01.000Z</published>
-    <updated>2020-12-10T12:49:05.676Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;准确的说，RSS就像一个网站的海报，里面包括这个网站的最新内容，会自动更新。所以，我们只要订阅了RSS，就不会错过自己喜欢的网站的更新了。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="互联网" scheme="https://itwor.cn/categories/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
-    
-      <category term="RSS" scheme="https://itwor.cn/tags/RSS/"/>
-    
-      <category term="订阅" scheme="https://itwor.cn/tags/%E8%AE%A2%E9%98%85/"/>
-    
-  </entry>
-  
-  <entry>
     <title>《论语》十二章</title>
-    <link href="https://itwor.cn/posts/1023808978/"/>
-    <id>https://itwor.cn/posts/1023808978/</id>
-    <published>2020-05-26T09:32:01.000Z</published>
-    <updated>2020-12-11T02:13:52.117Z</updated>
+    <link href="https://itwor.cn/posts/20201207170210/"/>
+    <id>https://itwor.cn/posts/20201207170210/</id>
+    <published>2020-12-07T09:02:10.000Z</published>
+    <updated>2020-12-11T16:13:22.773Z</updated>
     
     <summary type="html">
     
@@ -64,6 +41,29 @@
       <category term="孔子" scheme="https://itwor.cn/tags/%E5%AD%94%E5%AD%90/"/>
     
       <category term="先秦" scheme="https://itwor.cn/tags/%E5%85%88%E7%A7%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RSS订阅功能是什么，如何使用？</title>
+    <link href="https://itwor.cn/posts/20201206173201/"/>
+    <id>https://itwor.cn/posts/20201206173201/</id>
+    <published>2020-12-06T09:32:01.000Z</published>
+    <updated>2020-12-11T16:15:20.465Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;准确的说，RSS就像一个网站的海报，里面包括这个网站的最新内容，会自动更新。所以，我们只要订阅了RSS，就不会错过自己喜欢的网站的更新了。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="互联网" scheme="https://itwor.cn/categories/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+    
+      <category term="RSS" scheme="https://itwor.cn/tags/RSS/"/>
+    
+      <category term="订阅" scheme="https://itwor.cn/tags/%E8%AE%A2%E9%98%85/"/>
     
   </entry>
   
