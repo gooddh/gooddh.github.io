@@ -1,451 +1,723 @@
-/*
- * ALL RIGHTS RESERVED.
- *
- * 开源相关：
- * Github：https://github.com/Jackie1123/aNavigation
- * CSSFX：https://cssfx.netlify.com
- * jQuery：https://jquery.com
- * slideout：https://slideout.js.org
- * bootstrap：https://getbootstrap.com
- * font-awesome：https://fontawesome.com
- *
- * 版权所有，请勿删除！
- */
+$(function () {
+  const blogNameWidth = $('#site-name').width()
+  const menusWidth = $('#menus').width()
 
-var storage = window.localStorage;
-var data = storage.data;
-var night = storage.night;
-var bg = storage.bg;
-var closealert = storage.closealert;
-var li = $('.sidenav-btn');
-var blockquote = $('.blockquote');
+  const adjustMenu = () => {
+    const $nav = $('#nav')
+    let t
+    if (window.innerWidth < 768) t = true
+    else t = blogNameWidth + menusWidth > $nav.width() - 30
 
-if (storage.data != undefined) {
-  data = data.split(',');
-  // console.log('已存在localStorage的数据：' + data); //已存在localStorage的数据
-  $('#state a img').attr('src', data[0]); //头图
-  $('.submitButton').css('background-color', data[1]); //按钮bgc
-  $('#inputText').attr('placeholder', data[2]);
-  $('#form').attr('action', data[3]);
-  $('#inputText').attr('name', data[4]);
-  $('#Select').css('color', data[1]);
-  $('.span').css('background-color', data[1]);
-}
-
-if (storage.night != undefined) {
-  night = night.split(',');
-  console.log(night);
-  $('#main').css('background-color', night[0]); //主界面
-  $('#menu').css('background-color', night[1]); //侧栏
-  document.getElementById("night").innerHTML = night[2];
-  li.css('background-color', night[3]);
-  li.css('color', night[4]);
-  blockquote.css('color', night[5]);
-}
-
-if (storage.bg != undefined) {
-  bg = bg.split(',');
-  $('#main').css('background-image', bg[0]);
-}
-
-if (storage.closealert != undefined) {
-  closealert = closealert.split(',');
-  if (closealert[0] == '4.1.1') {
-    $('#alert').remove();
-  }
-}
-
-// rgb to hex
-function rgb2hex(rgb) {
-  rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-
-  function hex(x) {
-    return ("0" + parseInt(x).toString(16)).slice(-2);
-  }
-  return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-}
-// rgb to hex结束
-
-// 添加书签
-$(function() {
-  var bookmark = {
-    data: [{
-      name: '建工学院',
-      link: 'http://www.jlju.edu.cn/',
-      box_shadow: '#11B063',
-      icon: 'img/jg.jpg',
-    }, {
-      name: '今日热榜',
-      link: 'https://tophub.today/',
-      box_shadow: '#F2584A',
-      icon: 'img/headline.png',
-    }, {
-      name: '中国知网',
-      link: 'https://www.cnki.net/',
-      box_shadow: '#37bf4c',
-      icon: 'img/zw.jpg',
-    }, {
-      name: '斗鱼',
-      link: 'https://www.douyu.com/',
-      box_shadow: '#fe7700',
-      icon: 'img/douyu.png',
-    }, {
-      name: 'VPN',
-      link: 'https://webvpn.jlju.edu.cn/users/sign_in',
-      box_shadow: '#7C5DC7',
-      icon: 'img/vpn.jpg',
-    }, {
-      name: '网易云',
-      link: 'https://music.163.com/',
-      box_shadow: '#fe7700',
-      icon: 'img/wyy.jpg',
-    }, {
-      name: '科塔学术',
-      link: 'https://site.sciping.com/',
-      box_shadow: '#7C5DC7',
-      icon: 'img/uzer.jpg',
-    }, {
-      name: 'CODING',
-      link: 'https://gooddh.coding.net',
-      box_shadow: '#143DC6',
-      icon: 'img/coding.jpg',
-    }, {
-      name: '网易邮箱',
-      link: 'https://email.163.com',
-      box_shadow: '#37bf4c',
-      icon: 'img/email.jpg',
-    }, {
-      name: '京东',
-      link: 'https://www.jd.com',
-      box_shadow: '#5C53C9',
-      icon: 'img/jd.jpg',
-    }, {
-      name: 'Sci-Hub',
-      link: 'https://sci-hub.tw',
-      box_shadow: '#1C5DC8',
-      icon: 'img/sci.jpg',
-    }, {
-      name: '疫情跟踪',
-      link: 'https://ncov.dxy.cn/ncovh5/view/pneumonia',
-      box_shadow: '#7C9EC7',
-      icon: 'img/ding.png',
-    }]
-  }
-  for (var i = 0; i < bookmark.data.length; i++) {
-    if (bookmark.data[i].name == 'Via插件') {
-      var addList = '<li class="folder-item col-xs-3 col-sm-2 visible-xs visible-sm"><a target="_blank" href="' + bookmark.data[i].link + '"><div class="folder-item-box"><img class="folder-item-img" style="box-shadow:' + bookmark.data[i].box_shadow + ' 0 14px 12px -6px" src="' + bookmark.data[i].icon + '" /><p>' + bookmark.data[i].name + '</p></div></a></li>'
+    if (t) {
+      $nav.addClass('hide-menu')
     } else {
-      var addList = '<li class="folder-item col-xs-3 col-sm-2"><a target="_blank" href="' + bookmark.data[i].link + '"><div class="folder-item-box"><img class="folder-item-img" style="box-shadow:' + bookmark.data[i].box_shadow + ' 0 14px 12px -8px" src="' + bookmark.data[i].icon + '" /><p>' + bookmark.data[i].name + '</p></div></a></li>'
+      $nav.removeClass('hide-menu')
     }
-    $('#folder ul').append(addList);
-  }
-})
-// 添加书签结束
-
-// 搜索相关
-$(function() {
-  var search = {
-    data: [{
-      name: 'baidu',
-      icon: 'img/baidu-xs.png',
-      searchlink: 'https://www.baidu.com/s',
-      searchname: 'wd',
-      color: '#ffffff',
-      placeholder: '百度一下...'
-    }, {
-      name: 'bing',
-      icon: 'img/bing-xs.png',
-      searchlink: 'https://cn.bing.com/search',
-      searchname: 'q',
-      color: '#00868B',
-      placeholder: 'Bing搜索...'
-    }, {
-      name: 'github',
-      icon: 'img/github-xs.png',
-      searchlink: 'https://github.com/search',
-      searchname: 'q',
-      color: '#24292e',
-      placeholder: '全球最大的开源社区...'
-    }, {
-      name: 'bilibili',
-      icon: 'img/bilibili-xs.png',
-      searchlink: 'https://search.bilibili.com/all',
-      searchname: 'keyword',
-      color: '#e47494',
-      placeholder: 'b站是一个学习网站...'
-    }, {
-      name: 'wechat',
-      icon: 'img/wechat-xs.png',
-      searchlink: 'https://weixin.sogou.com/weixin',
-      searchname: 'query',
-      color: '#269032',
-      placeholder: '搜微信文章...'
-    }, {
-      name: 'sougou',
-      icon: 'img/sougou-xs.png',
-      searchlink: 'https://www.sogou.com/web',
-      searchname: 'query',
-      color: '#f94c18',
-      placeholder: '搜狗搜索...'
-    }, {
-      name: 'doge',
-      icon: 'img/doge-xs.png',
-      searchlink: 'https://www.dogedoge.com/results',
-      searchname: 'q',
-      color: '#ffca74',
-      placeholder: '手动狗头.jpg'
-    }, {
-      name: 'quark',
-      icon: 'img/quark-xs.png',
-      searchlink: 'https://quark.sm.cn/s',
-      searchname: 'q',
-      color: '#6182f6',
-      placeholder: '夸克搜索...'
-    }, {
-      name: 'miji',
-      icon: 'img/miji-xs.png',
-      searchlink: 'https://mijisou.com/',
-      searchname: 'q',
-      color: '#575757',
-      placeholder: '不追踪你的搜索引擎...'
-    }, {
-      name: 'duckduckgo',
-      icon: 'img/duckduckgo-xs.png',
-      searchlink: 'https://duckduckgo.com',
-      searchname: 'q',
-      color: '#de5833',
-      placeholder: '嘎嘎嘎...'
-    }, {
-      name: 'magi',
-      icon: 'img/magi-xs.png',
-      searchlink: 'https://magi.com/search',
-      searchname: 'q',
-      color: 'black',
-      placeholder: 'Mag[i]...'
-    }, {
-      name: 'zhihu',
-      icon: 'img/zhihu-xs.png',
-      searchlink: 'https://www.zhihu.com/search',
-      searchname: 'q',
-      color: '#1087eb',
-      placeholder: '知乎呀...'
-    }]
-  }
-  for (var i = 0; i < search.data.length; i++) { //添加搜索按钮
-    var addList = '<li class="folder-item2 col-xs-3 col-sm-2"> <a href="javascript:void(0)"> <div class="folder-item-box2"> <img id="' + search.data[i].name + '" class="folder-item-img2" src="' + search.data[i].icon + '" /> </div> </a> </li> '
-    $('.nav ul').append(addList);
   }
 
-  // 切换搜索引擎
-  $(document).click(function(e) {
-    var id = e.target.id;
-    for (var i = 0; i < search.data.length; i++) {
-      if (id == search.data[i].name) {
-        document.getElementById("state").innerHTML = "<a href='folder://'><img style='width:300px;' src='img/" + search.data[i].name + ".png'></a>";
-        $('#submitButton').css('background-color', search.data[i].color); //按钮bg
-        $('#Select').css('color', search.data[i].color); //选择器
-        $('#nav').css('display', 'none');
-        $('#folder').css('display', 'block');
-        document.getElementById("Select").innerHTML = "<hr>书签/搜索引擎 <img src='img/search-change.svg?v=2ae7ab8'>";
-        $("#inputText").attr("placeholder", search.data[i].placeholder);
-        $("#form").attr("action", search.data[i].searchlink);
-        $("#inputText").attr("name", search.data[i].searchname);
+  // 初始化header
+  const initAdjust = () => {
+    adjustMenu()
+    $('#nav').addClass('show')
+  }
 
-        //存入用户数据
-        var searchPho = $('#state a img').attr("src"); //搜索引擎头图
-        var color = rgb2hex($('.submitButton').css('background-color')); //搜索按钮颜色和搜索框四边颜色
-        var searchL = $('#form').attr("action"); //searchlink
-        var searchN = $('#inputText').attr("name"); //searchname
-        var placeholder = $('#inputText').attr('placeholder');
-        storage.data = [searchPho, color, placeholder, searchL, searchN] //记录用户数据
-        // console.log('新存入localStorage的数据：' + storage.data); //新存入localStorage的数据
-        break;
+  // sidebar menus
+  const sidebarFn = () => {
+    const $toggleMenu = $('#toggle-menu')
+    const $mobileSidebarMenus = $('#sidebar-menus')
+    const $menuMask = $('#menu-mask')
+    const $body = $('body')
+
+    function openMobileSidebar () {
+      btf.sidebarPaddingR()
+      $body.css('overflow', 'hidden')
+      $menuMask.fadeIn()
+      $toggleMenu.removeClass('close').addClass('open')
+      $mobileSidebarMenus.addClass('open')
+    }
+
+    function closeMobileSidebar () {
+      $body.css({ overflow: '', 'padding-right': '' })
+      $menuMask.fadeOut()
+      $toggleMenu.removeClass('open').addClass('close')
+      $mobileSidebarMenus.removeClass('open')
+    }
+
+    $toggleMenu.on('click', function () {
+      openMobileSidebar()
+    })
+
+    $menuMask.on('click touchstart', function (e) {
+      if ($toggleMenu.hasClass('open')) {
+        closeMobileSidebar()
       }
-    }
-  })
-  // 搜索相关结束
+    })
 
-  // 夜间模式
-  $('#night').click(function() {
-    if (rgb2hex($('#main').css('background-color')) == '#ffffff') {
-      $('#main').css('background-color', '#2f2f33'); //主界面
-      $('#menu').css('background-color', '#5C5C5C'); //侧栏
-      document.getElementById("night").innerHTML = "日间模式";
-      li.css({
-        "background-color": "#575757",
-        "color": "#DBDBDB"
-      });
-      blockquote.css('color', '#DBDBDB');
-    } else if (rgb2hex($('#main').css('background-color')) == '#2f2f33') {
-      $('#main').css('background-color', '#ffffff'); //主界面
-      $('#menu').css('background-color', '#40537d'); //侧栏
-      document.getElementById("night").innerHTML = "夜间模式";
-      li.css({
-        "background-color": "#E3E3E3",
-        "color": "black"
-      });
-      blockquote.css('color', 'black');
-    }
-    var mainbg = rgb2hex($('#main').css('background-color'));
-    var menubg = rgb2hex($('#menu').css('background-color'));
-    var inner = document.getElementById("night").innerHTML;
-    var libg = rgb2hex(li.css('background-color'));
-    var lico = rgb2hex(li.css('color'));
-    var blockquoteco = rgb2hex(blockquote.css('color'));
-    // storage.night = [mainbg, menubg, inner, libg, lico, blockquoteco];
-    // localStorage.clear()
-  })
-  // 夜间模式结束
-
-  // 更新提示框
-  $('#closealert').click(function() {
-    var version = '4.1.1';
-    localStorage.closealert = [version];
-  })
-  // 更新提示框结束
-
-})
-
-// 显示/干掉壁纸
-var width = $(document).width();
-$('#bg').click(function() {
-  width < 768 ? ($('#main').css('background-color') == '#353535' ? ($('#main').css('background-image', 'url(img/bg-xs.jpg)')) : ($('#main').css('background-color', '#353535'))) : $('#main').css('background-color') == '#353535' ? ($('#main').css('background-image', 'url(img/bg.jpg)')) : ($('#main').css('background-color', '#353535'));
-  var background = $('#main').css('background-color');
-  storage.bg = [background];
-})
-
-//检查搜索框是否为空
-function check() {
-  var o = document.getElementById("inputText");
-  var v = o.value;
-  v = v.replace(/[ ]/g, "");
-  if (v == '') {
-    return false;
-  }
-}
-//检查搜索框是否为空结束
-
-//title问候语
-var d = new Date();
-var time = d.getHours();
-if (time < 24) {
-  document.getElementById("title").innerHTML = "GOOD导航 | Good evening";
-}
-if (time < 18) {
-  document.getElementById("title").innerHTML = "GOOD导航 | Good afternoon";
-}
-if (time < 12) {
-  document.getElementById("title").innerHTML = "GOOD导航 | Good morning";
-}
-if (time < 5) {
-  document.getElementById("title").innerHTML = "GOOD导航 | Stay up late again";
-}
-//title问候语结束
-
-//导航、引擎选择器
-function select() {
-  $('#folder').css('display') == 'block' ? ($('#folder').css('display', 'none'), $('#nav').css('display', 'block'), document.getElementById("Select").innerHTML = "<hr>搜索引擎/书签 <img src='img/search-change.svg?v=2ae7ab8'>") : ($('#nav').css('display', 'none'), $('#folder').css('display', 'block'), document.getElementById("Select").innerHTML = "<hr>书签/搜索引擎 <img src='img/search-change.svg?v=2ae7ab8'>");
-}
-
-// 天气插件
-(function(a, h, g, f, e, d, c, b) {
-  b = function() {
-    d = h.createElement(g);
-    c = h.getElementsByTagName(g)[0];
-    d.src = e;
-    d.charset = "utf-8";
-    d.async = 1;
-    c.parentNode.insertBefore(d, c)
-  };
-  a["SeniverseWeatherWidgetObject"] = f;
-  a[f] || (a[f] = function() {
-    (a[f].q = a[f].q || []).push(arguments)
-  });
-  a[f].l = +new Date();
-  if (a.attachEvent) {
-    a.attachEvent("onload", b)
-  } else {
-    a.addEventListener("load", b, false)
-  }
-}(window, document, "script", "SeniverseWeatherWidget", "//cdn.sencdn.com/widget2/static/js/bundle.js?t=" + parseInt((new Date().getTime() / 100000000).toString(), 10)));
-window.SeniverseWeatherWidget('show', {
-  flavor: "bubble",
-  location: "WX4FBXXFKE4F",
-  geolocation: true,
-  language: "auto",
-  unit: "c",
-  theme: "auto",
-  token: "e14489a8-9a7e-477d-9c6c-b4b390175cca",
-  hover: "enabled",
-  container: "tp-weather-widget"
-})
-
-// 搜索提示词
-class searchHint {
-  constructor() {
-    this.search = inputText;
-    this.list = list;
-    this.body = document.body;
-    this.init();
-  };
-  init() {
-    this.watchInput();
-  };
-  watchInput() {
-    this.search.onkeyup = () => {
-      if (this.search.value.length == 0) {
-        this.list.innerHTML = '';
-        return;
+    $(window).on('resize', function (e) {
+      if (!$toggleMenu.is(':visible')) {
+        if ($toggleMenu.hasClass('open')) closeMobileSidebar()
       }
-      const script = document.createElement('script');
-      script.src = "https://www.baidu.com/su?wd=" + this.search.value + "&cb=jsonp.showMsg";
-      this.body.appendChild(script);
-      this.body.removeChild(script);
-    }
-  };
-  showMsg(msg) {
-    var href = $('#form').attr('action');
-    var name = $('#inputText').attr('name');
-    var v = $('#inputText').val();
-    var str = '';
-    for (var i = 0; i < msg.s.length; i++) {
-      var sk = new Array();
-      sk[i] = msg.s[i].replace(/\s*/g, ''); //去掉关键字空格
-      str += '<a href=' + href + '?' + name + '=' + sk[i] + '><li><span>' + (i + 1) + '</span>' + msg.s[i] + '</li></a>';
-    }
-    this.list.innerHTML = str;
-    if (str) { //有返回才显示#searchlist
-      $('#searchlist').css("display", "block");
-    }
-    document.onkeydown = function(event) {
-      if (event.keyCode == 8 && v.length == 1) {
-        $('#searchlist').css("display", "none");
-      }
-    };
-    $(document).click(function() { //点击其他地方隐藏#searchlist
-      $('#searchlist').css("display", "none");
-    });
+    })
   }
-}
-const jsonp = new searchHint();
 
-//导航、引擎选择器结束
-
-/*
- * ALL RIGHTS RESERVED.
- *
- * 作者：酷安@_小K同學
- * 项目开始日期：2020年01月26日
- * 上次修改时间：2020年03月24日
- * 开发日志：https://kksan.top/posts/12023
- *
- * 开源相关：
- * Github：https://github.com/Jackie1123/aNavigation
- * CSSFX：https://cssfx.netlify.com
- * jQuery：https://jquery.com
- * slideout：https://slideout.js.org
- * bootstrap：https://getbootstrap.com
- * font-awesome：https://fontawesome.com
- *
- * 版权所有，请勿删除！
+  /**
+ * 首頁top_img底下的箭頭
  */
+  const scrollDownInIndex = () => {
+    $('#scroll-down').on('click', function () {
+      btf.scrollToDest('#content-inner')
+    })
+  }
+
+  /**
+ * 代碼
+ * 只適用於Hexo默認的代碼渲染
+ */
+  const addHighlightTool = function () {
+    const isHighlightCopy = GLOBAL_CONFIG.highlight.highlightCopy
+    const isHighlightLang = GLOBAL_CONFIG.highlight.highlightLang
+    const isHighlightShrink = GLOBAL_CONFIG_SITE.isHighlightShrink
+    const isShowTool = isHighlightCopy || isHighlightLang || isHighlightShrink !== undefined
+    const $figureHighlight = GLOBAL_CONFIG.highlight.plugin === 'highlighjs' ? $('figure.highlight') : $('pre[class*="language-"]')
+
+    if (isShowTool && $figureHighlight.length) {
+      const isPrismjs = GLOBAL_CONFIG.highlight.plugin === 'prismjs'
+
+      let highlightShrinkEle = ''
+      let highlightCopyEle = ''
+      const highlightShrinkClass = isHighlightShrink === true ? 'closed' : ''
+
+      if (isHighlightShrink !== undefined) {
+        highlightShrinkEle = `<i class="fas fa-angle-down expand ${highlightShrinkClass}"></i>`
+      }
+
+      if (isHighlightCopy) {
+        highlightCopyEle = '<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>'
+      }
+
+      if (isHighlightLang) {
+        if (isPrismjs) {
+          $figureHighlight.each(function () {
+            const $this = $(this)
+            const langName = $this.attr('data-language') !== undefined ? $this.attr('data-language') : 'Code'
+            const highlightLangEle = `<div class="code-lang">${langName}</div>`
+            $this.wrap('<figure class="highlight"></figure>').before(`<div class="highlight-tools ${highlightShrinkClass}">${highlightShrinkEle + highlightLangEle + highlightCopyEle}</div>`)
+          })
+        } else {
+          $figureHighlight.each(function (i, o) {
+            const $this = $(this)
+            let langName = $this.attr('class').split(' ')[1]
+            if (langName === 'plain' || langName === undefined) langName = 'Code'
+            const highlightLangEle = `<div class="code-lang">${langName}</div>`
+            $this.prepend(`<div class="highlight-tools ${highlightShrinkClass}">${highlightShrinkEle + highlightLangEle + highlightCopyEle}</div>`)
+          })
+        }
+      } else {
+        const ele = `<div class="highlight-tools ${highlightShrinkClass}">${highlightShrinkEle + highlightCopyEle}</div>`
+        if (isPrismjs) $figureHighlight.wrap('<figure class="highlight"></figure>').before(ele)
+        else $figureHighlight.prepend(ele)
+      }
+
+      /**
+     * 代碼收縮
+     */
+
+      if (isHighlightShrink !== undefined) {
+        $('.highlight-tools >.expand').on('click', function () {
+          const $this = $(this)
+          const $table = $this.parent().nextAll()
+          $this.toggleClass('closed')
+          $table.is(':visible') ? $table.css('display', 'none') : $table.css('display', 'block')
+        })
+      }
+
+      /**
+     * 代碼copy
+     */
+      if (isHighlightCopy) {
+        const copy = function (text, ctx) {
+          if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
+            document.execCommand('copy')
+            if (GLOBAL_CONFIG.Snackbar !== undefined) {
+              btf.snackbarShow(GLOBAL_CONFIG.copy.success)
+            } else {
+              $(ctx).prev('.copy-notice')
+                .text(GLOBAL_CONFIG.copy.success)
+                .animate({
+                  opacity: 1
+                }, 450, function () {
+                  setTimeout(function () {
+                    $(ctx).prev('.copy-notice').animate({
+                      opacity: 0
+                    }, 650)
+                  }, 400)
+                })
+            }
+          } else {
+            if (GLOBAL_CONFIG.Snackbar !== undefined) {
+              btf.snackbarShow(GLOBAL_CONFIG.copy.noSupport)
+            } else {
+              $(ctx).prev('.copy-notice').text(GLOBAL_CONFIG.copy.noSupport)
+            }
+          }
+        }
+
+        // click events
+        $('.highlight-tools >.copy-button').on('click', function () {
+          const $buttonParent = $(this).parents('figure.highlight')
+          $buttonParent.addClass('copy-true')
+          const selection = window.getSelection()
+          const range = document.createRange()
+          if (isPrismjs) range.selectNodeContents($buttonParent.find('> pre code')[0])
+          else range.selectNodeContents($buttonParent.find('table .code pre')[0])
+          selection.removeAllRanges()
+          selection.addRange(range)
+          const text = selection.toString()
+          copy(text, this)
+          selection.removeAllRanges()
+          $buttonParent.removeClass('copy-true')
+        })
+      }
+    }
+  }
+
+  /**
+ * PhotoFigcaption
+ */
+  function addPhotoFigcaption () {
+    const images = $('#article-container img').not('.justified-gallery img')
+    images.each(function (i, o) {
+      const $this = $(o)
+      if ($this.attr('alt')) {
+        const t = $('<div class="img-alt is-center">' + $this.attr('alt') + '</div>')
+        $this.after(t)
+      }
+    })
+  }
+
+  /**
+ * justified-gallery 圖庫排版
+ */
+
+  let detectJgJsLoad = false
+  const runJustifiedGallery = function () {
+    const $justifiedGallery = $('.justified-gallery')
+    if ($justifiedGallery.length) {
+      const $imgList = $justifiedGallery.find('img')
+      $imgList.unwrap()
+      if ($imgList.length) {
+        $imgList.each(function (i, o) {
+          if ($(o).attr('data-lazy-src')) $(o).attr('src', $(o).attr('data-lazy-src'))
+          $(o).wrap('<div></div>')
+        })
+      }
+
+      if (detectJgJsLoad) btf.initJustifiedGallery($justifiedGallery)
+      else {
+        $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.justifiedGallery.css}">`)
+        $.getScript(`${GLOBAL_CONFIG.justifiedGallery.js}`, function () {
+          btf.initJustifiedGallery($justifiedGallery)
+        })
+        detectJgJsLoad = true
+      }
+    }
+  }
+
+  /**
+ * fancybox和 mediumZoom
+ */
+  const addLightBox = function () {
+    if (GLOBAL_CONFIG.lightbox === 'fancybox') {
+      const images = $('#article-container img:not(.gallery-group-img)').not($('a>img'))
+      images.each(function (i, o) {
+        const lazyloadSrc = $(o).attr('data-lazy-src') ? $(o).attr('data-lazy-src') : $(o).attr('src')
+        const dataCaption = $(o).attr('alt') ? $(o).attr('alt') : ''
+        $(o).wrap(`<a href="${lazyloadSrc}" data-fancybox="group" data-caption="${dataCaption}" class="fancybox"></a>`)
+      })
+
+      $().fancybox({
+        selector: '[data-fancybox]',
+        loop: true,
+        transitionEffect: 'slide',
+        protect: true,
+        buttons: ['slideShow', 'fullScreen', 'thumbs', 'close'],
+        hash: false
+      })
+    } else {
+      const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a)>img'))
+      zoom.on('open', function (event) {
+        const photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
+        zoom.update({
+          background: photoBg
+        })
+      })
+    }
+  }
+
+  /**
+ * 滾動處理
+ */
+  const scrollFn = function () {
+    let initTop = 0
+    let isChatShow = true
+    const $rightside = $('#rightside')
+    const $nav = $('#nav')
+    const isChatBtnHide = typeof chatBtnHide === 'function'
+    const isChatBtnShow = typeof chatBtnShow === 'function'
+    $(window).scroll(btf.throttle(function (event) {
+      const currentTop = $(this).scrollTop()
+      const isDown = scrollDirection(currentTop)
+      if (currentTop > 56) {
+        if (isDown) {
+          if ($nav.hasClass('visible')) $nav.removeClass('visible')
+          if (isChatBtnShow && isChatShow === true) {
+            chatBtnHide()
+            isChatShow = false
+          }
+        } else {
+          if (!$nav.hasClass('visible')) $nav.addClass('visible')
+          if (isChatBtnHide && isChatShow === false) {
+            window.chatBtnShow()
+            isChatShow = true
+          }
+        }
+        $nav.addClass('fixed')
+        if ($rightside.css('opacity') === '0') {
+          $rightside.css({ opacity: '1', transform: 'translateX(-38px)' })
+        }
+      } else {
+        if (currentTop === 0) {
+          $nav.removeClass('fixed').removeClass('visible')
+        }
+        $rightside.css({ opacity: '', transform: '' })
+      }
+    }, 200))
+
+    // find the scroll direction
+    function scrollDirection (currentTop) {
+      const result = currentTop > initTop // true is down & false is up
+      initTop = currentTop
+      return result
+    }
+  }
+
+  /**
+ *  toc
+ */
+  const tocFn = function () {
+    const $cardTocLayout = $('#card-toc')
+    const $cardToc = $cardTocLayout.find('.toc-content')
+    const $tocChild = $cardToc.find('.toc-child')
+    const $tocLink = $cardToc.find('.toc-link')
+    const $article = $('#article-container')
+
+    $tocChild.hide()
+
+    // main of scroll
+    $(window).scroll(btf.throttle(function (event) {
+      const currentTop = $(this).scrollTop()
+      scrollPercent(currentTop)
+      findHeadPosition(currentTop)
+    }, 100))
+
+    // expand toc-item
+    const expandToc = function ($item) {
+      if ($item.is(':visible')) {
+        return
+      }
+      $item.fadeIn(400)
+    }
+
+    const scrollPercent = function (currentTop) {
+      const docHeight = $article.height()
+      const winHeight = $(window).height()
+      const headerHeight = $article.offset().top
+      const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight)
+      const scrollPercent = (currentTop - headerHeight) / (contentMath)
+      const scrollPercentRounded = Math.round(scrollPercent * 100)
+      const percentage = (scrollPercentRounded > 100) ? 100
+        : (scrollPercentRounded <= 0) ? 0
+          : scrollPercentRounded
+      $cardToc.attr('progress-percentage', percentage)
+    }
+
+    // anchor
+    const isAnchor = GLOBAL_CONFIG.isanchor
+    const updateAnchor = function (anchor) {
+      if (window.history.replaceState && anchor !== window.location.hash) {
+        window.history.replaceState(undefined, undefined, anchor)
+      }
+    }
+
+    const mobileToc = {
+      open: () => {
+        $cardTocLayout.css('display', 'block')
+      },
+
+      close: () => {
+        $cardTocLayout.css('animation', 'toc-close .2s')
+        setTimeout(() => {
+          $cardTocLayout.css({ display: '', animation: '' })
+        }, 100)
+      }
+    }
+
+    $('#mobile-toc-button').on('click', () => {
+      if ($cardTocLayout.is(':visible')) {
+        mobileToc.close()
+      } else {
+        mobileToc.open()
+      }
+    })
+
+    // toc元素點擊
+    $tocLink.on('click', function (e) {
+      e.preventDefault()
+      btf.scrollToDest(decodeURI($(this).attr('href')))
+      if (window.innerWidth < 900) {
+        mobileToc.close()
+      }
+    })
+
+    const autoScrollToc = function (currentTop, item) {
+      const activePosition = item.offset().top
+      const $tocContent = $cardToc
+      const sidebarScrollTop = $tocContent.scrollTop()
+      if (activePosition > (currentTop + $(window).height() - 100)) {
+        $tocContent.scrollTop(sidebarScrollTop + 100)
+      }
+      if (activePosition < currentTop + 100) {
+        $tocContent.scrollTop(sidebarScrollTop - 100)
+      }
+    }
+
+    // find head position & add active class
+    // DOM Hierarchy:
+    // ol.toc > (li.toc-item, ...)
+    // li.toc-item > (a.toc-link, ol.toc-2child > (li.toc-item, ...))
+    const list = $article.find('h1,h2,h3,h4,h5,h6')
+
+    const findHeadPosition = function (top) {
+    // assume that we are not in the post page if no TOC link be found,
+    // thus no need to update the status
+      if ($tocLink.length === 0) {
+        return false
+      }
+
+      let currentId = ''
+      list.each(function () {
+        const head = $(this)
+        if (top > head.offset().top - 70) {
+          currentId = '#' + encodeURI($(this).attr('id'))
+        }
+      })
+
+      if (currentId === '') {
+        $tocLink.removeClass('active')
+        $tocChild.hide()
+      }
+
+      const currentActive = $tocLink.filter('.active')
+      if (currentId && currentActive.attr('href') !== currentId) {
+        if (isAnchor) updateAnchor(currentId)
+
+        $tocLink.removeClass('active')
+
+        const _this = $tocLink.filter('[href="' + currentId + '"]')
+        _this.addClass('active')
+        autoScrollToc(top, _this)
+
+        const parents = _this.parents('.toc-child')
+        // Returned list is in reverse order of the DOM elements
+        // Thus `parents.last()` is the outermost .toc-child container
+        // i.e. list of subsections
+        const topLink = (parents.length > 0) ? parents.last() : _this
+        expandToc(topLink.closest('.toc-item').find('.toc-child'))
+        topLink
+        // Find all top-level .toc-item containers, i.e. sections
+        // excluding the currently active one
+          .closest('.toc-item').siblings('.toc-item')
+        // Hide their respective list of subsections
+          .find('.toc-child').hide()
+      }
+    }
+  }
+
+  /**
+ * Rightside
+ */
+
+  const $rightsideEle = $('#rightside')
+
+  // read-mode
+  $rightsideEle.on('click', '#readmode', function () {
+    $('body').toggleClass('read-mode')
+  })
+
+  // Switch Between Light And Dark Mode
+  if ($('#darkmode').length) {
+    const switchReadMode = function () {
+      const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+      if (nowMode === 'light') {
+        activateDarkMode()
+        saveToLocal.set('theme', 'dark', 2)
+        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
+      } else {
+        activateLightMode()
+        saveToLocal.set('theme', 'light', 2)
+        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
+      }
+    }
+
+    $rightsideEle.on('click', '#darkmode', () => {
+      switchReadMode()
+      typeof utterancesTheme === 'function' && utterancesTheme()
+      typeof FB === 'object' && window.loadFBComment()
+      window.DISQUS && $('#disqus_thread').children().length && setTimeout(() => window.disqusReset(), 200)
+    })
+  }
+
+  // rightside 點擊設置 按鈕 展開
+  $rightsideEle.on('click', '#rightside_config', () => $('#rightside-config-hide').toggleClass('show'))
+
+  // Back to top
+  $rightsideEle.on('click', '#go-up', () => btf.scrollToDest('body'))
+
+  $rightsideEle.on('click', '#hide-aside-btn', () => {
+    const $htmlDom = $(document.documentElement)
+    if ($htmlDom.hasClass('hide-aside')) {
+      $htmlDom.removeClass('hide-aside')
+      saveToLocal.set('aside-status', 'show', 2)
+    } else {
+      $htmlDom.addClass('hide-aside')
+      saveToLocal.set('aside-status', 'hide', 2)
+    }
+  })
+
+  /**
+ * menu
+ * 側邊欄sub-menu 展開/收縮
+ * 解決menus在觸摸屏下，滑動屏幕menus_item_child不消失的問題（手機hover的bug)
+ */
+  const clickFnOfSubMenu = function () {
+    $('#sidebar-menus .expand').on('click', function () {
+      $(this).parents('.menus_item').find('> .menus_item_child').slideToggle()
+      $(this).toggleClass('hide')
+    })
+
+    $(window).on('touchmove', function (e) {
+      const $menusChild = $('#nav .menus_item_child')
+      if ($menusChild.is(':visible')) {
+        $menusChild.css('display', 'none')
+      }
+    })
+  }
+
+  /**
+ * 複製時加上版權信息
+ */
+  const addCopyright = () => {
+    const copyright = GLOBAL_CONFIG.copyright
+    document.body.oncopy = (e) => {
+      e.preventDefault()
+      let textFont; const copyFont = window.getSelection(0).toString()
+      if (copyFont.length > copyright.limitCount) {
+        textFont = copyFont + '\n' + '\n' + '\n' +
+        copyright.languages.author + '\n' +
+        copyright.languages.link + window.location.href + '\n' +
+        copyright.languages.source + '\n' +
+        copyright.languages.info
+      } else {
+        textFont = copyFont
+      }
+      if (e.clipboardData) {
+        return e.clipboardData.setData('text', textFont)
+      } else {
+        return window.clipboardData.setData('text', textFont)
+      }
+    }
+  }
+
+  /**
+ * 網頁運行時間
+ */
+  const addRuntime = () => {
+    const $runtimeCount = $('#runtimeshow')
+    if ($runtimeCount.length) {
+      const publishDate = $runtimeCount.attr('data-publishDate')
+      $runtimeCount.text(btf.diffDate(publishDate) + ' ' + GLOBAL_CONFIG.runtime)
+    }
+  }
+
+  /**
+ * 最後一次更新時間
+ */
+  const addLastPushDate = () => {
+    const $lastPushDateItem = $('#last-push-date')
+    if ($lastPushDateItem.length) {
+      const lastPushDate = $lastPushDateItem.attr('data-lastPushDate')
+      const diffDay = btf.diffDate(lastPushDate, true)
+      $lastPushDateItem.text(diffDay)
+    }
+  }
+
+  /**
+ * table overflow
+ */
+  const addTableWrap = function () {
+    const $table = $('#article-container table').not($('figure.highlight > table'))
+    $table.each(function () {
+      $(this).wrap('<div class="table-wrap"></div>')
+    })
+  }
+
+  /**
+ * tag-hide
+ */
+  const clickFnOfTagHide = function () {
+    const $hideInline = $('.hide-button')
+    if ($hideInline.length) {
+      $hideInline.on('click', function (e) {
+        const $this = $(this)
+        const $hideContent = $(this).next('.hide-content')
+        $this.toggleClass('open')
+        $hideContent.toggle()
+        if ($this.hasClass('open')) {
+          if ($hideContent.find('.justified-gallery').length > 0) {
+            btf.initJustifiedGallery($hideContent.find('.justified-gallery'))
+          }
+        }
+      })
+    }
+  }
+
+  const tabsFn = {
+    clickFnOfTabs: function () {
+      const $tab = $('#article-container .tabs')
+      $tab.find('.tab > button:not(.tab-to-top)').on('click', function (e) {
+        const $this = $(this)
+        const $tabItem = $this.parent()
+
+        if (!$tabItem.hasClass('active')) {
+          const $tabContent = $this.parents('.nav-tabs').next()
+          $tabItem.siblings('.active').removeClass('active')
+          $tabItem.addClass('active')
+          const tabId = $this.attr('data-href')
+          $tabContent.find('> .tab-item-content').removeClass('active')
+          $tabContent.find(`> ${tabId}`).addClass('active')
+          const $isTabJustifiedGallery = $tabContent.find(tabId).find('.justified-gallery')
+          if ($isTabJustifiedGallery.length > 0) {
+            btf.initJustifiedGallery($isTabJustifiedGallery)
+          }
+        }
+      })
+    },
+    backToTop: () => {
+      const backToTopBtn = $('#article-container .tabs .tab-to-top')
+      backToTopBtn.on('click', function () {
+        btf.scrollToDest($(this).parents('.tabs'))
+      })
+    }
+  }
+
+  const toggleCardCategory = function () {
+    const $cardCategory = $('#aside-cat-list .card-category-list-item.parent i')
+    $cardCategory.on('click', function (e) {
+      e.preventDefault()
+      $(this).toggleClass('expand').parents('.parent').next().slideToggle(300)
+    })
+  }
+
+  const switchComments = function () {
+    let switchDone = false
+    $('#comment-switch > .switch-btn').on('click', function () {
+      const $btn = $(this)
+      $btn.hasClass('move') ? $btn.removeClass('move') : $btn.addClass('move')
+      $('#post-comment > .comment-wrap > div').each(function (i, o) {
+        const $this = $(o)
+        if ($this.is(':visible')) {
+          $this.hide()
+        } else {
+          $this.css({
+            display: 'block',
+            animation: 'tabshow .5s'
+          })
+        }
+      })
+      if (!switchDone && typeof loadOtherComment === 'function') {
+        switchDone = true
+        loadOtherComment()
+      }
+    })
+  }
+
+  const addPostOutdateNotice = function () {
+    const data = GLOBAL_CONFIG.noticeOutdate
+    var diffDay = btf.diffDate(GLOBAL_CONFIG_SITE.postUpdate)
+    if (diffDay >= data.limitDay) {
+      const code = `<div class="post-outdate-notice">${data.messagePrev + ' ' + diffDay + ' ' + data.messageNext}</div>`
+      if (data.position === 'top') {
+        $('#article-container').prepend(code)
+      } else {
+        $('#article-container').append(code)
+      }
+    }
+  }
+
+  const lazyloadImg = () => {
+    window.lazyLoadInstance = new LazyLoad({
+      elements_selector: 'img',
+      threshold: 0,
+      data_src: 'lazy-src'
+    })
+  }
+
+  const relativeDate = function (selector) {
+    selector.each((i, o) => {
+      const $this = $(o)
+      const timeVal = $this.attr('datetime')
+      $this.text(btf.diffDate(timeVal, true)).css('display', 'inline')
+    })
+  }
+
+  const unRefreshFn = function () {
+    $(window).on('resize', function () {
+      adjustMenu()
+    })
+
+    clickFnOfSubMenu()
+    GLOBAL_CONFIG.islazyload && lazyloadImg()
+    GLOBAL_CONFIG.copyright !== undefined && addCopyright()
+  }
+
+  window.refreshFn = function () {
+    initAdjust()
+
+    if (GLOBAL_CONFIG_SITE.isPost) {
+      GLOBAL_CONFIG_SITE.isToc && tocFn()
+      GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice()
+      GLOBAL_CONFIG.relativeDate.post && relativeDate($('#post-meta time'))
+    } else {
+      GLOBAL_CONFIG.relativeDate.homepage && relativeDate($('#recent-posts time'))
+      GLOBAL_CONFIG.runtime && addRuntime()
+      addLastPushDate()
+      toggleCardCategory()
+    }
+
+    sidebarFn()
+    GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
+    GLOBAL_CONFIG.highlight && addHighlightTool()
+    GLOBAL_CONFIG.isPhotoFigcaption && addPhotoFigcaption()
+    runJustifiedGallery()
+    GLOBAL_CONFIG.lightbox !== 'null' && addLightBox()
+    scrollFn()
+    addTableWrap()
+    clickFnOfTagHide()
+    tabsFn.clickFnOfTabs()
+    tabsFn.backToTop()
+    switchComments()
+  }
+
+  refreshFn()
+  unRefreshFn()
+})
