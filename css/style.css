@@ -41,7 +41,7 @@ ul {
 
 @media (min-width: 768px) { /*大屏*/
 	#main {
-		background: url(http://t.itwor.cn/bing.php) no-repeat;
+		background: url(https://open.saintic.com/api/bingPic) no-repeat;
 		background-attachment: fixed;
     -moz-background-size: cover;    /*背景图片拉伸以铺满全屏*/
     -ms-background-size: cover;
