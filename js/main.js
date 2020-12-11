@@ -278,7 +278,7 @@ $(function() {
       blockquote.css('color', '#DBDBDB');
     } else if (rgb2hex($('#main').css('background-color')) == '#2f2f33') {
       $('#main').css('background-color', '#ffffff'); //主界面
-      $('#menu').css('background-color', '#EDEDED'); //侧栏
+      $('#menu').css('background-color', '#40537d'); //侧栏
       document.getElementById("night").innerHTML = "夜间模式";
       li.css({
         "background-color": "#E3E3E3",
