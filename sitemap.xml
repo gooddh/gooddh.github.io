@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.itwor.cn/artitalk/index.html</loc>
+    
+    <lastmod>2020-12-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.itwor.cn/about/index.html</loc>
     
     <lastmod>2020-12-18</lastmod>
@@ -24,13 +31,6 @@
   
   <url>
     <loc>https://www.itwor.cn/posts/20201206173201/</loc>
-    
-    <lastmod>2020-12-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.itwor.cn/artitalk/index.html</loc>
     
     <lastmod>2020-12-12</lastmod>
     
@@ -144,20 +144,6 @@
 
   
   <url>
-    <loc>https://www.itwor.cn/tags/RSS/</loc>
-    <lastmod>2020-12-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.itwor.cn/tags/%E8%AE%A2%E9%98%85/</loc>
-    <lastmod>2020-12-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.itwor.cn/tags/%E8%AE%BA%E8%AF%AD/</loc>
     <lastmod>2020-12-18</lastmod>
     <changefreq>daily</changefreq>
@@ -178,17 +164,31 @@
     <priority>0.6</priority>
   </url>
   
-
-  
   <url>
-    <loc>https://www.itwor.cn/categories/%E4%BA%92%E8%81%94%E7%BD%91/</loc>
+    <loc>https://www.itwor.cn/tags/RSS/</loc>
     <lastmod>2020-12-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
+    <loc>https://www.itwor.cn/tags/%E8%AE%A2%E9%98%85/</loc>
+    <lastmod>2020-12-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  
+  <url>
     <loc>https://www.itwor.cn/categories/%E8%AE%BA%E8%AF%AD/</loc>
+    <lastmod>2020-12-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.itwor.cn/categories/%E4%BA%92%E8%81%94%E7%BD%91/</loc>
     <lastmod>2020-12-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
