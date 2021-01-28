@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.itwor.cn/"/>
-  <updated>2020-12-12T12:53:40.996Z</updated>
+  <updated>2020-12-22T14:04:19.078Z</updated>
   <id>https://www.itwor.cn/</id>
   
   <author>
@@ -21,14 +21,17 @@
     <link href="https://www.itwor.cn/posts/20201207170210/"/>
     <id>https://www.itwor.cn/posts/20201207170210/</id>
     <published>2020-12-07T09:02:10.000Z</published>
-    <updated>2020-12-12T12:53:40.996Z</updated>
+    <updated>2020-12-22T14:04:19.078Z</updated>
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;
-&lt;img src=&quot;https://cdn.jsdelivr.net/gh/gooddh/cdn@1.4/img/lunyu.jpg&quot; width = &quot;500&quot; height = &quot;200&quot; alt=&quot;孔子&quot;/&gt;
-&lt;/div&gt;
-《论语》是记载孔丘及其一部分弟子言行的语录体文集，儒家的重要经典之一，选自《论语译注》（杨伯峻译注，中华书局1980年版）《论语》儒家经典著作，是记录孔子及其弟子言行的一部书。共20篇。与《大学》《中庸》《孟子》合称“四书”。
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src= &quot;/img/loading.gif&quot;
+        
+      
     
     </summary>
     
@@ -41,29 +44,6 @@
       <category term="孔子" scheme="https://www.itwor.cn/tags/%E5%AD%94%E5%AD%90/"/>
     
       <category term="先秦" scheme="https://www.itwor.cn/tags/%E5%85%88%E7%A7%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RSS订阅功能是什么，如何使用？</title>
-    <link href="https://www.itwor.cn/posts/20201206173201/"/>
-    <id>https://www.itwor.cn/posts/20201206173201/</id>
-    <published>2020-12-06T09:32:01.000Z</published>
-    <updated>2020-12-12T13:05:01.758Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;准确的说，RSS就像一个网站的海报，里面包括这个网站的最新内容，会自动更新。所以，我们只要订阅了RSS，就不会错过自己喜欢的网站的更新了。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="互联网" scheme="https://www.itwor.cn/categories/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
-    
-      <category term="RSS" scheme="https://www.itwor.cn/tags/RSS/"/>
-    
-      <category term="订阅" scheme="https://www.itwor.cn/tags/%E8%AE%A2%E9%98%85/"/>
     
   </entry>
   
