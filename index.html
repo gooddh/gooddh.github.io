@@ -1,299 +1,603 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>嘟嘟的小站</title><meta name="author" content="itwor"><meta name="copyright" content="itwor"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta property="og:type" content="website">
-<meta property="og:title" content="嘟嘟的小站">
-<meta property="og:url" content="https://www.itwor.cn/index.html">
-<meta property="og:site_name" content="嘟嘟的小站">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/gooddh/cdn@master/img/tx.jpg">
-<meta property="article:author" content="itwor">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/gooddh/cdn@master/img/tx.jpg"><link rel="shortcut icon" href="/img/tx.jpg"><link rel="canonical" href="https://www.itwor.cn/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#5cba8a&quot;,&quot;paginator&quot;:&quot;#00c4b6&quot;,&quot;button_hover&quot;:&quot;#FF7242&quot;,&quot;text_selection&quot;:&quot;#00c4b6&quot;,&quot;link_color&quot;:&quot;#99a9bf&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#00c4b6&quot;,&quot;blockquote_padding_color&quot;:&quot;#49b1f5&quot;,&quot;blockquote_background_color&quot;:&quot;#49b1f5&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '天',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
-    },
-    fancybox: {
-      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: true,
-  isanchor: false
-};
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8" />
+		<title>MarkDown在线编辑器-嘟嘟工具箱</title>
+		<meta name="keywords" content="online markdown editor,markdown编辑器,在线编辑markdown" />
+		<link rel="stylesheet" href="css/editormd.min.css" />
+		<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/gooddh/cdn@master/img/tx.jpg" type="image/x-icon" />
+		<style>
+			html, body { overflow: hidden; } html, body, #test-editormd { margin: 0; padding: 0; width: 100%; height: 100%; border: none; box-sizing: border-box; } </style>
+	</head>
+	<body>
+		<textarea id="md-tpl"># 在线 MarkDown 编辑器
 
-var saveToLocal = {
-  set: function setWithExpiry(key, value, ttl) {
-    const now = new Date()
-    const expiryDay = ttl * 86400000
-    const item = {
-      value: value,
-      expiry: now.getTime() + expiryDay,
-    }
-    localStorage.setItem(key, JSON.stringify(item))
-  },
+![](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png)
 
-  get: function getWithExpiry(key) {
-    const itemStr = localStorage.getItem(key)
+Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。
 
-    if (!itemStr) {
-      return undefined
-    }
-    const item = JSON.parse(itemStr)
-    const now = new Date()
+Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。
 
-    if (now.getTime() > item.expiry) {
-      localStorage.removeItem(key)
-      return undefined
-    }
-    return item.value
-  }
+Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。
+
+Markdown 编写的文档后缀为 `.md` 或 `.markdown`。
+
+## MarkDown 效果及格式示例
+
+**目录 (Table of Contents)**
+
+[TOCM]
+
+[TOC]
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+# Heading 1 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+## Heading 2 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+### Heading 3 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+#### Heading 4 link [Heading link](https://github.com/pandao/editor.md "Heading link") Heading link [Heading link](https://github.com/pandao/editor.md "Heading link")
+##### Heading 5 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+###### Heading 6 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+
+#### 标题（用底线的形式）Heading (underline)
+
+This is an H1
+=============
+
+This is an H2
+-------------
+
+### 字符效果和横线等
+
+----
+
+~~删除线~~ <s>删除线（开启识别HTML标签时）</s>
+*斜体字*      _斜体字_
+**粗体**  __粗体__
+***粗斜体*** ___粗斜体___
+
+上标：X<sub>2</sub>，下标：O<sup>2</sup>
+
+**缩写(同HTML的abbr标签)**
+
+> 即更长的单词或短语的缩写形式，前提是开启识别HTML标签时，已默认开启
+
+The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.
+
+### 引用 Blockquotes
+
+> 引用文本 Blockquotes
+
+引用的行内混合 Blockquotes
+
+> 引用：如果想要插入空白换行`即<br />标签`，在插入处先键入两个以上的空格然后回车即可，[普通链接](http://localhost/)。
+
+### 锚点与链接 Links
+
+[普通链接](http://localhost/)
+
+[普通链接带标题](http://localhost/ "普通链接带标题")
+
+直接链接：<https://github.com>
+
+[锚点链接][anchor-id]
+
+[anchor-id]: http://www.this-anchor-link.com/
+
+[mailto:test.test@gmail.com](mailto:test.test@gmail.com)
+
+GFM a-tail link @pandao  邮箱地址自动链接 test.test@gmail.com  www@vip.qq.com
+
+> @pandao
+
+### 多语言代码高亮 Codes
+
+#### 行内代码 Inline code
+
+执行命令：`npm install marked`
+
+#### 缩进风格
+
+即缩进四个空格，也做为实现类似 `<pre>` 预格式化文本 ( Preformatted Text ) 的功能。
+
+    <?php
+        echo "Hello world!";
+    ?>
+
+预格式化文本：
+
+    | First Header  | Second Header |
+    | ------------- | ------------- |
+    | Content Cell  | Content Cell  |
+    | Content Cell  | Content Cell  |
+
+#### JS代码
+
+```javascript
+function test() {
+    console.log("Hello world!");
 }
 
-// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
-const getScript = url => new Promise((resolve, reject) => {
-  const script = document.createElement('script')
-  script.src = url
-  script.async = true
-  script.onerror = reject
-  script.onload = script.onreadystatechange = function() {
-    const loadState = this.readyState
-    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-    script.onload = script.onreadystatechange = null
-    resolve()
-  }
-  document.head.appendChild(script)
-})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
-  isPost: false,
-  isHome: true,
-  isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2021-01-29 15:22:32'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
+(function(){
+    var box = function() {
+        return box.fn.init();
+    };
 
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(function () {  window.activateDarkMode = function () {
-    document.documentElement.setAttribute('data-theme', 'dark')
-    if (document.querySelector('meta[name="theme-color"]') !== null) {
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-    }
-  }
-  window.activateLightMode = function () {
-    document.documentElement.setAttribute('data-theme', 'light')
-   if (document.querySelector('meta[name="theme-color"]') !== null) {
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-    }
-  }
-  const autoChangeMode = 'false'
-  const t = saveToLocal.get('theme')
-  if (autoChangeMode === '1') {
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-    if (t === undefined) {
-      if (isLightMode) activateLightMode()
-      else if (isDarkMode) activateDarkMode()
-      else if (isNotSpecified || hasNoSupport) {
-        const now = new Date()
-        const hour = now.getHours()
-        const isNight = hour <= 6 || hour >= 18
-        isNight ? activateDarkMode() : activateLightMode()
-      }
-      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-        if (saveToLocal.get('theme') === undefined) {
-          e.matches ? activateDarkMode() : activateLightMode()
+    box.prototype = box.fn = {
+        init : function(){
+            console.log('box.init()');
+
+            return this;
+        },
+
+        add : function(str) {
+            alert("add", str);
+
+            return this;
+        },
+
+        remove : function(str) {
+            alert("remove", str);
+
+            return this;
         }
-      })
-    } else if (t === 'light') activateLightMode()
-    else activateDarkMode()
-  } else if (autoChangeMode === '2') {
-    const now = new Date()
-    const hour = now.getHours()
-    const isNight = hour <= 6 || hour >= 18
-    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
-    else if (t === 'light') activateLightMode()
-    else activateDarkMode()
-  } else {
-    if (t === 'dark') activateDarkMode()
-    else if (t === 'light') activateLightMode()
-  }const asideStatus = saveToLocal.get('aside-status')
-if (asideStatus !== undefined) {
-   if (asideStatus === 'hide') {
-     document.documentElement.classList.add('hide-aside')
-   } else {
-     document.documentElement.classList.remove('hide-aside')
-   }
-}})()</script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="嘟嘟的小站" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/gooddh/cdn@master/img/tx.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 归类</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://a.itwor.cn/"><i class="fa-fw fas fa-mouse-pointer"></i><span> 导航</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 存档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-tv"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 图片</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-video"></i><span> 追剧</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://music.itwor.cn/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://game.itwor.cn/"><i class="fa-fw fas fa-image"></i><span> Game</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.cloud.tencent.com/tcb/"><i class="fa-fw fas fa-list"></i><span> Twikoo</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/login.html#/signin/"><i class="fa-fw fas fa-list"></i><span> LeanCloud</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/artitalk/"><i class="fa-fw fas fa-book"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://open.saintic.com/api/bingPic)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">嘟嘟的小站</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 归类</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://a.itwor.cn/"><i class="fa-fw fas fa-mouse-pointer"></i><span> 导航</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 存档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-tv"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 图片</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-video"></i><span> 追剧</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://music.itwor.cn/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://game.itwor.cn/"><i class="fa-fw fas fa-image"></i><span> Game</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.cloud.tencent.com/tcb/"><i class="fa-fw fas fa-list"></i><span> Twikoo</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/login.html#/signin/"><i class="fa-fw fas fa-list"></i><span> LeanCloud</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/artitalk/"><i class="fa-fw fas fa-book"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">嘟嘟的小站</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/gooddh" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=gooddh@126.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/20201207170210/" title="《论语》十二章">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/gooddh/cdn@1.4/img/lunyu.jpg/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《论语》十二章"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/20201207170210/" title="《论语》十二章">《论语》十二章</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-12-07T09:02:10.000Z" title="发表于 2020-12-07 17:02:10">2020-12-07</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E8%AF%AD/">论语</a></span></div><div class="content">子曰：“学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知而不愠，不亦君子乎？”——《学而》
-曾子曰：“吾日三省吾身：为人谋而不忠乎？与朋友交而不信乎？传不习乎？”——《学而》
-子曰：“吾十有五而志于学，三十而立，四十而不惑，五十而知天命，六十而耳顺，七十而从心所欲，不逾矩。”——《为政》
-子曰：“温故而知新，可以为师矣。”——《为政》
-子曰：“学而不思则罔，思而不学则殆。”——《为政》
-子曰：“贤哉，回也！一箪食，一瓢饮，在陋巷，人不堪其忧，回也不改其乐。贤哉，回也！”——《雍也》
-子曰：“知之者不如好之者，好之者不如乐之者。”——《雍也》
-子曰：“饭疏食饮水，曲肱而枕之，乐亦在其中矣。不义而富且贵，于我如浮云。”——《述而》
-子曰：“三人行，必有我师焉。择其善者而从之，其不善者而改之。”——《述而》
-子在川上曰：“逝者如斯夫，不舍昼夜。”——《子罕》
-子曰：“三军可夺帅也，匹夫不可夺志也。”——《子罕》
-子夏曰：“博学而笃志，切问而近思，仁在其中矣。”
-</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/gooddh/cdn@master/img/tx.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">itwor</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/gooddh"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/gooddh" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=gooddh@126.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>^_^</span></div><div class="announcement_content">部分图片源自bing,首页图片每日自动更新,来源为Bing每日壁纸。网站部分内容来源于网络,若有问题,请联系(gooddh@126.com)删除。</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/20201207170210/" title="《论语》十二章"><img data-lazy-src="https://cdn.jsdelivr.net/gh/gooddh/cdn@1.4/img/lunyu.jpg/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《论语》十二章"/></a><div class="content"><a class="title" href="/posts/20201207170210/" title="《论语》十二章">《论语》十二章</a><time datetime="2020-12-07T09:02:10.000Z" title="发表于 2020-12-07 17:02:10">2020-12-07</time></div></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="card-content"><div class="item-headline"><i class="fas fa-bolt"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%AE%BA%E8%AF%AD/" style="font-size: 1.1em; color: rgb(151, 136, 79)">论语</a><a href="/tags/%E5%AD%94%E5%AD%90/" style="font-size: 1.1em; color: rgb(18, 31, 173)">孔子</a><a href="/tags/%E5%85%88%E7%A7%A6/" style="font-size: 1.1em; color: rgb(82, 104, 71)">先秦</a></div></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-01-10T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-01-29T07:22:32.671Z"></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/friends.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By itwor</div><div class="footer_custom_text">简易而不失真意！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
-  fetch('https://api.btstu.cn/yan/api.php?charset=utf-8&encode=json')
-    .then(response => response.json())
-    .then(data => {
-      if (true) {
-        var sub = "".length == 0 ? new Array() : "".split(',')
-        var both = sub.unshift(data.text)
-        typed = new Typed('#subtitle', {
-          strings: sub,
-          startDelay: 300,
-          typeSpeed: 150,
-          loop: false,
-          backSpeed: 50,
-        })
-      } else {
-        document.getElementById('subtitle').innerHTML = data.text
-      }
-    })
-}
+    };
 
-if (true) {
-  if (typeof Typed === 'function') {
-    subtitleType()
-  } else {
-    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
-  }
-} else {
-  subtitleType()
-}
-</script><script>if (document.getElementsByClassName('mermaid').length) {
-  if (window.mermaidJsLoad) mermaid.init()
-  else {
-    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
-      window.mermaidJsLoad = true
-      mermaid.initialize({
-        theme: 'default',
-      })
-      false && mermaid.init()
-    })
-  }
-}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script>window.addEventListener('load', () => {
-  const changeContent = (content) => {
-    if (content === '') return content
+    box.fn.init.prototype = box.fn;
 
-    content = content.replace(/<[^>]+>/g,"") // remove html tag
-    content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
-    content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
+    window.box =box;
+})();
 
-    if (content.length > 150) {
-      content = content.substring(0,150) + '...'
+var testBox = box();
+testBox.add("jQuery").remove("jQuery");
+```
+
+#### HTML 代码 HTML codes
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <mate charest="utf-8" />
+        <meta name="keywords" content="Editor.md, Markdown, Editor" />
+        <title>Hello world!</title>
+        <style type="text/css">
+            body{font-size:14px;color:#444;font-family: "Microsoft Yahei", Tahoma, "Hiragino Sans GB", Arial;background:#fff;}
+            ul{list-style: none;}
+            img{border:none;vertical-align: middle;}
+        </style>
+    </head>
+    <body>
+        <h1 class="text-xxl">Hello world!</h1>
+        <p class="text-green">Plain text</p>
+    </body>
+</html>
+```
+
+### 图片 Images
+
+Image:
+
+![](https://pandao.github.io/editor.md/examples/images/4.jpg)
+
+> Follow your heart.
+
+![](https://pandao.github.io/editor.md/examples/images/8.jpg)
+
+> 图为：厦门白城沙滩
+
+图片加链接 (Image + Link)：
+
+[![](https://pandao.github.io/editor.md/examples/images/7.jpg)](https://pandao.github.io/editor.md/images/7.jpg "李健首张专辑《似水流年》封面")
+
+> 图为：李健首张专辑《似水流年》封面
+
+----
+
+### 列表 Lists
+
+#### 无序列表（减号）Unordered Lists (-)
+
+- 列表一
+- 列表二
+- 列表三
+
+#### 无序列表（星号）Unordered Lists (*)
+
+* 列表一
+* 列表二
+* 列表三
+
+#### 无序列表（加号和嵌套）Unordered Lists (+)
+
++ 列表一
++ 列表二
+    + 列表二-1
+    + 列表二-2
+    + 列表二-3
++ 列表三
+    * 列表一
+    * 列表二
+    * 列表三
+
+#### 有序列表 Ordered Lists (-)
+
+1. 第一行
+2. 第二行
+3. 第三行
+
+#### GFM task list
+
+- [x] GFM task list 1
+- [x] GFM task list 2
+- [ ] GFM task list 3
+    - [ ] GFM task list 3-1
+    - [ ] GFM task list 3-2
+    - [ ] GFM task list 3-3
+- [ ] GFM task list 4
+    - [ ] GFM task list 4-1
+    - [ ] GFM task list 4-2
+
+----
+
+### 绘制表格 Tables
+
+| 项目        | 价格   |  数量  |
+| --------   | -----:  | :----:  |
+| 计算机      | $1600   |   5     |
+| 手机        |   $12   |   12   |
+| 管线        |    $1    |  234  |
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell 
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
+| Function name | Description                    |
+| ------------- | ------------------------------ |
+| `help()`      | Display the help window.       |
+| `destroy()`   | **Destroy your computer!**     |
+
+| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |
+
+| Item      | Value |
+| --------- | -----:|
+| Computer  | $1600 |
+| Phone     |   $12 |
+| Pipe      |    $1 |
+
+----
+
+#### 特殊符号 HTML Entities Codes
+
+© &  ¨ ™ ¡ £
+& < > ¥ € ® ± ¶ § ¦ ¯ « · 
+
+X² Y³ ¾ ¼  ×  ÷   »
+
+18ºC  "  '
+
+[========]
+
+#### 反斜杠 Escape
+
+\*literal asterisks\*
+
+[========]
+
+### 科学公式 TeX(KaTeX)
+
+$$E=mc^2$$
+
+行内的公式$$E=mc^2$$行内的公式，行内的$$E=mc^2$$公式。
+
+$$x > y$$
+
+$$\(\sqrt{3x-1}+(1+x)^2\)$$
+
+$$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$
+
+多行公式：
+
+```math
+\displaystyle
+\left( \sum\_{k=1}^n a\_k b\_k \right)^2
+\leq
+\left( \sum\_{k=1}^n a\_k^2 \right)
+\left( \sum\_{k=1}^n b\_k^2 \right)
+```
+
+```katex
+\displaystyle 
+    \frac{1}{
+        \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{
+        \frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {
+        1+\frac{e^{-6\pi}}
+        {1+\frac{e^{-8\pi}}
+         {1+\cdots} }
+        } 
     }
-    return content
-  }
+```
 
-  const getComment = () => {
-    const runTwikoo = () => {
-      twikoo.getRecentComments({
-        envId: 'gooddh-0g4lypgo7ab655f4',
-        pageSize: 4,
-        includeReply: true
-      }).then(function (res) {
-        saveToLocal.set('twikoo-newest-comments', JSON.stringify(res), 10/(60*24))
-        generateHtml(res)
-      }).catch(function (err) {
-        const $dom = document.querySelector('#card-newest-comments .aside-list')
-        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
-      })
-    }
+```latex
+f(x) = \int_{-\infty}^\infty
+    \hat f(\xi)\,e^{2 \pi i \xi x}
+    \,d\xi
+```
 
-    if (typeof twikoo === 'object') {
-      runTwikoo()
-    } else {
-      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runTwikoo)
-    }
-  }
+### 分页符 Page break
 
-  const generateHtml = array => {
-    let result = ''
+> Print Test: Ctrl + P
 
-    if (array.length) {
-      for (let i = 0; i < array.length; i++) {
-        result += '<div class=\'aside-list-item\'>'
+[========]
 
-        if (true) {
-          let name = 'src'
-          if(true) {
-            name = 'data-lazy-src'
-          }
-          result += `<a href='${array[i].url + '#' + array[i].id}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
-        }
-        
-        result += `<div class='content'>
-        <a class='comment' href='${array[i].url + '#' + array[i].id}'>${changeContent(array[i].commentText)}</a>
-        <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].created, true)}</time></div>
-        </div></div>`
-      }
-    } else {
-      result += '没有评论'
-    }
+### 绘制流程图 Flowchart
 
-    let $dom = document.querySelector('#card-newest-comments .aside-list')
-    $dom.innerHTML= result
-    window.lazyLoadInstance && window.lazyLoadInstance.update()
-    window.pjax && window.pjax.refresh($dom)
-  }
+```flow
+st=>start: 用户登陆
+op=>operation: 登陆操作
+cond=>condition: 登陆成功 Yes or No?
+e=>end: 进入后台
 
-  const newestCommentInit = () => {
-    if (document.querySelector('#card-newest-comments .aside-list')) {
-      const data = saveToLocal.get('twikoo-newest-comments')
-      if (data) {
-        generateHtml(JSON.parse(data))
-      } else {
-        getComment()
-      }
-    }
-  }
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```
 
-  newestCommentInit()
-  document.addEventListener('pjax:complete', newestCommentInit)
-})</script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
-POWERMODE.shake = false;
-POWERMODE.mobile = false;
-document.body.addEventListener('input', POWERMODE);
-</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script></div></body></html>
+[========]
+
+### 绘制序列图 Sequence Diagram
+
+```seq
+Andrew->China: Says Hello 
+Note right of China: China thinks\nabout it 
+China-->Andrew: How are you? 
+Andrew->>China: I am good thanks!
+```
+
+### End</textarea>
+		<div id="test-editormd"></div>
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script src="editormd.min.js"></script>
+		<script>
+			(function(a,b){if("function"==typeof define&&define.amd)define([],b);else if("undefined"!=typeof exports)b();else{b(),a.FileSaver={exports:{}}.exports}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Depricated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;return b.open("HEAD",a,!1),b.send(),200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a,"undefined"!=typeof module&&(module.exports=a)}); </script>
+		<script type="text" id="html-output-tpl">
+			<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<head><title>{{title}}</title>
+</head>
+<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/KaTeX/0.7.1/katex.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/pandao/editor.md@1.5.0/css/editormd.min.css">
+<style type="text/css">
+	body{
+		font-family:"Helvetica Neue","Helvetica","Microsoft Yahei","微软雅黑","Lantinghei SC","STXihei","WenQuanYi Micro Hei",Arial,sans-serif;
+		text-align:justify;margin:auto;font-size:14px;line-height:1.6em;
+		color:#333;background:#fefefe;padding:15px;margin:30px auto;position: relative;
+		-webkit-font-smoothing: antialiased;font-smoothing: antialiased;
+	}
+	
+	article,footer,header,nav{margin:0 auto}
+	article{margin-top:4em;margin-bottom:4em;min-height:400px}
+	footer{margin-bottom:50px}
+	video{margin:2em 0;border:1px solid #ddd}
+	nav{font-size:.9em;font-style:italic;border-bottom:1px solid #ddd;padding:1em 0}
+	nav p{margin:0}
+	details{margin: 15px 0;}
+	summary{cursor:pointer;padding: 4px;}
+	summary:focus{outline: none;box-shadow: 0 0 3px #2196F3;}
+	.h1,h1{font-size:2.2em;}
+	.h2,h2{font-size:1.9em;}
+	.h3,h3{font-size:1.6em;}
+	.h4,h4{font-size:1.3em;}
+	.h5,h5{font-size:1.2em;}
+	.h6,h6{font-size:1.1em;}
+	.h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6{
+		font-family:inherit;font-weight:500;color: #333;
+		line-height: 1.2em;padding: 0.3em 0;margin: 0.8em 0 0.4em 0;
+		word-break: break-all;
+	}
+	.h1,h1{letter-spacing: 1px;border-bottom: 1px solid #ddd;}
+	.h2,h2{padding-bottom: 0.15em;}
+	p{-webkit-hypens:auto;-moz-hypens:auto;hyphens:auto;margin:10px 0;}
+	p,li,div,ul{word-wrap: break-all;}
+	blockquote{margin-left:1em;padding:10px 15px;margin:10px 0 20px 0;border-left:10px solid #ddd;background: #f6f6f6;}
+	blockquote p{margin:0;font-weight:400;}
+	pre{display:block;padding:0;overflow:auto;margin:0 0 10px;font-size:1em;line-height:1.42857143;
+		word-break:break-all;word-wrap:break-word;color:#333;background:none;border-radius:4px}
+	code,kbd,pre,samp{
+		font-family:Consolas,'Liberation Mono','Ubuntu Mono',Menlo,Courier,sans-serif;
+	}
+	a{color:#1980e6;text-decoration:none}
+	a:hover{text-decoration:underline}
+	a img{border:none}
+	img{max-width: 100%;}
+	h1 a,h1 a:hover{text-decoration:none}
+	hr{border: 0 none;height: 4px;margin:1.2em 0;
+	    background: rgba(0, 0, 0, 0) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+	}
+	@media screen and (min-width: 900px) {
+		body {width: 900px;}
+	}
+	ul,ol{padding:0.2em 0 0.2em 2em;}
+	table {border-collapse: collapse;border-spacing: 0;margin-bottom: 20px;}
+	table thead{background: #eee;}
+	table td,table th{padding: .5em;border: 1px solid #ddd;line-height: 1.5;}
+	.markdown-flow{background:#fff;padding: 15px;}
+	.markdown-flow .label{color:#444;}
+	.markdown-latex {
+		text-align: center;font-size:1.3em;color: #000;
+		margin-bottom: 1.5em;overflow: hidden;overflow-x:auto;
+	}
+	.latex-inline .katex-display{display:inline-block;font-size: 0.8em;}
+	.markdown-menu ul{padding:0 10px 20px 20px;}
+	.markdown-menu li{
+		font-size:14px;list-style:none;
+		line-height:1.8em;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+	}
+	.markdown-menu-h2{padding-left:2em;}
+	.markdown-menu-h3{padding-left:4em;}
+	.markdown-menu-h4{padding-left:6em;}
+	.markdown-menu-h5{padding-left:8em;}
+	.markdown-menu-h6{padding-left:10em;}
+
+	.print-btn{
+		position:absolute;padding:4px 20px;color:#444;font-size:1em;
+		background:#eee;background:rgba(200,200,200,0.2);margin-top: -45px;right:15px;
+	}
+	.print-btn:hover{text-decoration: none;background: #14a2ff;color: #fff;}
+
+	.hidden{display:none !important;}
+
+	/*打印样式*/
+	@media print {
+		body{padding:0 1.5cm;margin:0 auto 10px auto;font-size:13px;}
+		.print-btn{display: none;}
+	}
+	
+	ol.linenums {
+	    padding-left: 2.5em;
+	}
+	ol.linenums li {
+	    list-style-type: decimal!important;
+	}
+</style>
+<body>
+<a href="javascript:window.print();" class="print-btn">打印(Print)</a>
+<!-- MarkDown Content -->
+
+{{content}}
+
+<!-- /MarkDown Content -->
+</body>
+<html>
+</script>
+		<script type="text/javascript">
+			var testEditor;
+			$(function() {
+				var mdContent = $("#md-tpl").text();
+				$("#md-tpl").hide();
+				testEditor = editormd("test-editormd", {
+					path: 'lib/',
+					editorTheme: "default",
+					markdown: mdContent,
+					codeFold: true,
+					saveHTMLToTextarea: true,
+					searchReplace: true,
+					htmlDecode: "style,script,iframe|on*",
+					emoji: false,
+					taskList: true,
+					tocm: true,
+					tex: true,
+					flowChart: true,
+					sequenceDiagram: true,
+					imageUpload: false,
+					imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+					imageUploadURL: "./php/upload.php",
+					onload: function() {
+						var keyMap = {
+							"Ctrl-S": function(cm) {
+								saveMD();
+							},
+						};
+						this.addKeyMap(keyMap);
+					},
+					toolbarIcons: function() {
+						return ["save", "saveHTML", "HTMLCode", "|", "undo", "redo", "|", "bold", "del", "italic", "quote",
+							"ucwords", "uppercase", "lowercase", "|", "h1", "h2", "h3", "h4", "h5", "h6", "|", "list-ul", "list-ol",
+							"hr", "|", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table",
+							"datetime", "html-entities", "pagebreak", "|", "goto-line", "watch", "preview", "fullscreen", "clear",
+							"search", "|", "help", "info"
+						];
+					},
+					toolbarIconsClass: {
+						save: "fa-save",
+						saveHTML: "fa-html5",
+						HTMLCode: "fa-code-fork",
+					},
+					toolbarHandlers: {
+						save: function(cm, icon, cursor, selection) {
+							saveMD();
+						},
+						saveHTML: function(cm, icon, cursor, selection) {
+							saveHTML();
+						},
+						HTMLCode: function(cm, icon, cursor, selection) {
+							this.executePlugin("htmlCodeDialog", "html-code-dialog/html-code-dialog");
+						},
+					},
+					lang: {
+						toolbar: {
+							save: "保存",
+							saveHTML: "保存为 HTML 文件",
+							HTMLCode: "查看 HTML 代码",
+						}
+					},
+					onfullscreen: function() {
+						var element = document.documentElement;
+						if (element.requestFullscreen) {
+							element.requestFullscreen();
+						} else if (element.msRequestFullscreen) {
+							element.msRequestFullscreen();
+						} else if (element.mozRequestFullScreen) {
+							element.mozRequestFullScreen();
+						} else if (element.webkitRequestFullscreen) {
+							element.webkitRequestFullscreen();
+						}
+					},
+					onfullscreenExit: function() {
+						if (document.exitFullscreen) {
+							document.exitFullscreen();
+						} else if (document.msExitFullscreen) {
+							document.msExitFullscreen();
+						} else if (document.mozCancelFullScreen) {
+							document.mozCancelFullScreen();
+						} else if (document.webkitExitFullscreen) {
+							document.webkitExitFullscreen();
+						}
+					}
+				});
+
+				function saveMD() {
+					var md = testEditor.getMarkdown();
+					var html = testEditor.getHTML();
+					var blob = new Blob([md], {
+						type: "text/plain;charset=utf-8"
+					});
+					saveAs(blob, "MarkDown.md");
+				}
+
+				function saveHTML() {
+					var md = testEditor.getMarkdown();
+					var html = testEditor.getHTML();
+					html = $(".editormd-preview-container").eq(0).html();
+					var blob = new Blob([getHTMLOutput()], {
+						type: "text/plain;charset=utf-8"
+					});
+					saveAs(blob, "MarkDown.html");
+				}
+				window.getHTMLOutput = function() {
+					var htmlTPL = $("#html-output-tpl").html();
+					htmlTPL = htmlTPL.replace(/\{\{title\}\}/g, "MarkDown");
+					htmlTPL = htmlTPL.replace(/\{\{content\}\}/g, $(".editormd-preview-container").eq(0).html());
+					return htmlTPL;
+				};
+			});
+		</script>
+	</body>
+</html>
